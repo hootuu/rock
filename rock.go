@@ -24,3 +24,7 @@ func Inscribe(data bk.Invariable, pin bool) (bk.BID, uint64, *errors.Error) {
 func Get(bid bk.BID, v interface{}) (uint64, *errors.Error) {
 	return stone.Get(bid, v)
 }
+
+func BuildBID(data bk.Invariable) (bk.BID, *errors.Error) {
+	return stone.BuildBID(data)
+}

@@ -53,11 +53,11 @@ func Inscribe(data bk.Invariable, pin bool) (bk.BID, uint64, *errors.Error) {
 }
 
 func Get(bid bk.BID, v interface{}) (uint64, *errors.Error) {
-	cid, nErr := cid.Decode(bid.S())
+	cidObj, nErr := cid.Decode(bid.S())
 	if nErr != nil {
 		return 0, errors.Verify("invalid BID")
 	}
-	node, nErr := mustGetIpfsNode().DAG.Get(context.Background(), cid)
+	node, nErr := mustGetIpfsNode().DAG.Get(context.Background(), cidObj)
 	if nErr != nil {
 		logger.Logger.Error("ipfs.DAG.Get failed", zap.String("bid", bid.S()),
 			zap.Error(nErr))
